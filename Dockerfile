@@ -1,22 +1,15 @@
-FROM centos
+FROM alpine:latest
 
 MAINTAINER CMGS <ilskdw@gmail.com>
 
-RUN yum -y update && \
-    yum -y groupinstall "Development Tools" && \
-    yum -y install NetworkManager epel-release sudo which wget ruby rubygems ruby-devel openssl-devel zlib-devel http-parser && \
-    yum -y install libgit2 libgit2-devel && \
-    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    sed -i -e "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers && \
-    gem install fpm
+
+RUN apk --no-cache update && \
+    apk --no-cache add ruby ruby-dev libgit2 libgit2-dev alpine-sdk ruby-etc rpm dpkg go && \
+    gem install --no-ri --no-rdoc fpm
 
 ENV GOPATH /.go
 ENV GOBIN /.go/bin
-ENV PATH $PATH:/usr/local/go/bin:$GOPATH/bin
-ENV GOVERSION 1.10.3
-RUN wget https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz && \
-    tar -C /usr/local -xvzf go$GOVERSION.linux-amd64.tar.gz && \
-    rm -rf go$GOVERSION.linux-amd64.tar.gz && \
-    mkdir -p $GOBIN $GOPATH/src/github.com/projecteru2 && \
+ENV PATH $PATH:$GOPATH/bin
+RUN mkdir -p $GOBIN $GOPATH/src/github.com/projecteru2 && \
     curl https://glide.sh/get | sh
 
