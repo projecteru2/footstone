@@ -4,7 +4,7 @@ MAINTAINER CMGS <ilskdw@gmail.com>
 
 
 RUN apk --no-cache update && \
-    apk --no-cache add linux-headers git ruby ruby-dev libgit2 libgit2-dev alpine-sdk ruby-etc rpm dpkg go go-tools && \
+    apk --no-cache add linux-headers libc-dev gcc git ruby ruby-dev libgit2 libgit2-dev alpine-sdk ruby-etc rpm dpkg go go-tools && \
     gem install --no-ri --no-rdoc fpm
 
 ENV GOPATH /.go
