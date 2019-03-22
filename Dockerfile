@@ -1,15 +1,10 @@
-FROM alpine:latest
+FROM golang:alpine
 
 MAINTAINER CMGS <ilskdw@gmail.com>
 
-
 RUN apk --no-cache update && \
-    apk --no-cache add linux-headers libc-dev gcc git ruby ruby-dev libgit2 libgit2-dev alpine-sdk ruby-etc rpm dpkg go go-tools && \
+    apk --no-cache add linux-headers libc-dev gcc git ruby ruby-dev libgit2 libgit2-dev alpine-sdk ruby-etc rpm dpkg && \
     gem install --no-ri --no-rdoc fpm
 
-ENV GOPATH /.go
-ENV GOBIN /.go/bin
-ENV PATH $PATH:$GOPATH/bin
-RUN mkdir -p $GOBIN $GOPATH/src/github.com/projecteru2 && \
-    curl https://glide.sh/get | sh
+RUN mkdir -p $GOPATH/src/github.com/projecteru2
 
