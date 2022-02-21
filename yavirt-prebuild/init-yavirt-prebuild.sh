@@ -15,7 +15,7 @@ cd e2fsprogs-1.46.4
 make && make install && make install-libs
 
 cd "$WORK_DIR"
-source init-libguestfs.sh
+source /tmp/init-libguestfs.sh
 
 DYN_LIB_PATH=/usr/lib/x86_64-linux-gnu
 cp /tmp/"${BASENAME}"/lib/.libs/"${DYN_LIB_FILE}" ${DYN_LIB_PATH}/
