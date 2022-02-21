@@ -13,3 +13,6 @@ RUN add-apt-repository ppa:git-core/ppa \
   && git --version
 
 RUN bash /tmp/init-yavirt-prebuild.sh
+
+RUN curl -LOv https://dl.google.com/go/go1.17.7.linux-amd64.tar.gz \
+  && tar -C /usr/local -xzf go1.17.7.linux-amd64.tar.gz
