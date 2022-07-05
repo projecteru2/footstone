@@ -1,4 +1,4 @@
-FROM alpine3.15
+FROM alpine3.16
 
 MAINTAINER CMGS <ilskdw@gmail.com>
 
